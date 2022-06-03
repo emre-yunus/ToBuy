@@ -12,9 +12,23 @@ class AppRoot extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xff834655),
-          title: Text(
-            "ToBuy",
-            style: TextStyle(color: Color(0xffc8b273)),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/logo_transparent.png',
+                fit: BoxFit.contain,
+                height: 130,
+              ),
+              //Container(
+              //    padding: const EdgeInsets.all(8.0),
+              //    child: Text(
+              //      'ToBuy',
+              //      style: TextStyle(color: Color(0xffc8b273),
+              //    ),
+              //),
+              //)
+            ],
           ),
           bottom: TabBar(
               labelColor: const Color(0xffc8b273),
@@ -39,7 +53,7 @@ class AppRoot extends StatelessWidget {
 
 class AppTree extends StatelessWidget {
   Widget build(BuildContext context) {
-    return Container(color: const Color(0xFCFFF3C8),);
+    return Container(color: const Color(0xFCFFF3C8));
   }
 }
 

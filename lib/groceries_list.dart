@@ -4,12 +4,12 @@ class GroceriesList extends StatefulWidget {
   @override
   State<GroceriesList> createState() => _GroceriesListState();
 }
+
 class _GroceriesListState extends State<GroceriesList> {
   String text = "text off";
   bool isChecked = false;
   Color itemColor = Colors.black;
   TextDecoration itemDecoration = TextDecoration.none;
-
 
   void changeText() {
     if (isChecked) {
@@ -26,28 +26,32 @@ class _GroceriesListState extends State<GroceriesList> {
     return Container(
       color: const Color(0xFCFFF3C8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Checkbox(
-              value: isChecked,
-              onChanged: (bool? newValue) {
-                setState(() {
-                  changeText();
-                  isChecked = newValue!;
-                });
-              },
-              activeColor: Colors.grey,
-            ),
-            Text(
-              text,
-              style: TextStyle(
-                color: itemColor,
-                decoration: itemDecoration,
-                fontSize: 20,
-              ),
-            ),
-          ]
-      ),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Checkbox(
+                    value: isChecked,
+                    onChanged: (bool? newValue) {
+                      setState(() {
+                        changeText();
+                        isChecked = newValue!;
+                      });
+                    },
+                    activeColor: Colors.grey,
+                  ),
+                  Text(
+                    text,
+                    style: TextStyle(
+                      color: itemColor,
+                      decoration: itemDecoration,
+                      fontSize: 20,
+                    ),
+                  ),
+                ])
+          ]),
     );
   }
 }

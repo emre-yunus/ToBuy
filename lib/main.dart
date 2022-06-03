@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'groceries_archive.dart';
+import 'groceries_list.dart';
 
 void main() {
   runApp(AppRoot());
@@ -34,33 +36,33 @@ class AppRoot extends StatelessWidget {
               labelColor: const Color(0xffc8b273),
               indicatorColor: const Color(0xffc8b273),
               tabs: [
-                Tab(text: 'Groceries'),
-                Tab(text: 'Archive')
+                Tab(child: Text(
+                  "Groceries",
+                  style: TextStyle(
+                      fontSize: 20
+                  ),
+                )
+                ),
+                Tab(child: Text(
+                    "Archive",
+                    style: TextStyle(
+                        fontSize: 20
+                    ),
+                )
+                )
               ]
           ),
         ),
 
         body: TabBarView(
             children: <Widget>[
-              AppTree(),
-              Scherm2()
+              GroceriesList(),
+              GroceriesArchive()
             ]
         ),
       ),
     ),
   );
-}
-
-class AppTree extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Container(color: const Color(0xFCFFF3C8));
-  }
-}
-
-class Scherm2 extends StatelessWidget {
-  Widget build(BuildContext context) {
-    return Container(color: const Color(0xFCFFF3C8));
-  }
 }
 
 class Scherm3 extends StatelessWidget {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'groceries_list_item.dart';
 
 class GroceriesList extends StatefulWidget {
   @override
@@ -6,52 +7,17 @@ class GroceriesList extends StatefulWidget {
 }
 
 class _GroceriesListState extends State<GroceriesList> {
-  String text = "text off";
-  bool isChecked = false;
-  Color itemColor = Colors.black;
-  TextDecoration itemDecoration = TextDecoration.none;
-
-  void changeText() {
-    if (isChecked) {
-      itemColor = Colors.black;
-      itemDecoration = TextDecoration.none;
-    } else {
-      itemColor = Colors.grey;
-      itemDecoration = TextDecoration.lineThrough;
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xFCFFF3C8),
-      child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Checkbox(
-                    value: isChecked,
-                    onChanged: (bool? newValue) {
-                      setState(() {
-                        changeText();
-                        isChecked = newValue!;
-                      });
-                    },
-                    activeColor: Colors.grey,
-                  ),
-                  Text(
-                    text,
-                    style: TextStyle(
-                      color: itemColor,
-                      decoration: itemDecoration,
-                      fontSize: 20,
-                    ),
-                  ),
-                ])
-          ]),
+      child: ListView(
+        children: const <Widget>[
+          GroceriesListItem(itemName: "item 1"),
+          GroceriesListItem(itemName: "item 2"),
+          GroceriesListItem(itemName: "item 3"),
+        ],
+      ),
     );
   }
 }

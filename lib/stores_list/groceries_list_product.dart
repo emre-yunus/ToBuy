@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class GroceriesListItem extends StatefulWidget {
-  final String itemName;
+class GroceriesListProduct extends StatefulWidget {
+  final String productName;
 
-  const GroceriesListItem ({ required this.itemName });
+  const GroceriesListProduct ({ required this.productName });
 
   @override
-  State<GroceriesListItem> createState() => _GroceriesListItemState();
+  State<GroceriesListProduct> createState() => _GroceriesListProductState();
 }
 
-class _GroceriesListItemState extends State<GroceriesListItem> {
+class _GroceriesListProductState extends State<GroceriesListProduct> {
   bool isChecked = false;
   Color itemColor = Colors.black;
   TextDecoration itemDecoration = TextDecoration.none;
@@ -38,7 +38,7 @@ class _GroceriesListItemState extends State<GroceriesListItem> {
         activeColor: Colors.grey,
       ),
       Text(
-        widget.itemName,
+        widget.productName,
         style: TextStyle(
           color: itemColor,
           decoration: itemDecoration,

@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'store_and_products.dart';
 
 class DropDownMenuStores extends StatefulWidget {
   final String chosenStore;
   final Function changeChosenStore;
   final List storesAndItems;
   final Function getFirstStore;
+  final Function getListOfStores;
 
   const DropDownMenuStores(
       {required this.chosenStore,
       required this.changeChosenStore,
       required this.storesAndItems,
-      required this.getFirstStore});
+      required this.getFirstStore,
+      required this.getListOfStores});
 
   @override
   State<DropDownMenuStores> createState() => _DropDownMenuStoresState();
@@ -43,7 +44,7 @@ class _DropDownMenuStoresState extends State<DropDownMenuStores> {
           currentValue = value!; //without this the dropdown does not show the current choice of store
         });
       },
-      items: getStoresList().map<DropdownMenuItem<String>>((String value) {
+      items: widget.getListOfStores().map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
           child: Text(value),

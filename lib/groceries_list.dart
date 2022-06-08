@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'button_add_store.dart';
 import 'stores_list/groceries_list_store.dart';
 import 'button_add_product.dart';
 
@@ -29,8 +30,24 @@ class _GroceriesListState extends State<GroceriesList> {
     });
   }
 
+  void addStore(String storeName) {
+    setState(() {
+      storesAndItems.add({"storeName": storeName, "storeProducts": <String>[]});
+    });
+  }
+
   String getFirstStore() {
     return storesAndItems[0]["storeName"];
+  }
+
+  List<String> getListOfStores() {
+    List<String> storeList = [];
+
+    for (var i in storesAndItems) {
+      storeList.add(i["storeName"]);
+    }
+
+    return storeList;
   }
 
   @override
@@ -39,11 +56,13 @@ class _GroceriesListState extends State<GroceriesList> {
       color: const Color(0xFCFFF3C8),
       child: ListView(
         children: <Widget>[
+          AddStoreButton(addStore: addStore),
           AddProductButton(
             title: "title of button",
             addProduct: addProduct,
             storesAndItems: storesAndItems,
             getFirstStore: getFirstStore,
+            getListOfStores: getListOfStores,
           ),
           for (var i in storesAndItems)
             GroceriesListStore(

@@ -6,12 +6,14 @@ class AddProductButton extends StatefulWidget {
   final List storesAndItems;
   final Function addProduct;
   final Function getFirstStore;
+  final Function getListOfStores;
 
   const AddProductButton(
       {required this.title,
       required this.storesAndItems,
       required this.addProduct,
-      required this.getFirstStore});
+      required this.getFirstStore,
+      required this.getListOfStores});
 
   @override
   State<AddProductButton> createState() => _AddProductButtonState();
@@ -30,7 +32,6 @@ class _AddProductButtonState extends State<AddProductButton> {
     setState(() {
       chosenStore = newStore;
     });
-    print(chosenStore);
   }
 
   @override
@@ -60,7 +61,8 @@ class _AddProductButtonState extends State<AddProductButton> {
                     chosenStore: chosenStore,
                     changeChosenStore: changeChosenStore,
                     storesAndItems: widget.storesAndItems,
-                    getFirstStore: widget.getFirstStore),
+                    getFirstStore: widget.getFirstStore,
+                    getListOfStores: widget.getListOfStores,),
               ],
             ),
             Row(

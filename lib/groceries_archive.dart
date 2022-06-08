@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'stores_list/groceries_list_store.dart';
 
 class GroceriesArchive extends StatelessWidget {
   Widget build(BuildContext context) {
@@ -10,7 +9,7 @@ class GroceriesArchive extends StatelessWidget {
       color: const Color(0xFCFFF3C8),
       child: Column(
           children: [
-            for (var i in storesList) GroceriesListStore(storeName: i),
+            //for (var i in storesList) GroceriesListStore(storeName: i),
           ],
       ),
     );

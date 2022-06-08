@@ -3,8 +3,10 @@ import 'groceries_list_product.dart';
 
 class GroceriesListStore extends StatefulWidget {
   final String storeName;
+  final List<String> storeProducts;
 
-  const GroceriesListStore({required this.storeName});
+  const GroceriesListStore(
+      {required this.storeName, required this.storeProducts, });
 
   @override
   State<GroceriesListStore> createState() => _GroceriesListStoreState();
@@ -12,7 +14,6 @@ class GroceriesListStore extends StatefulWidget {
 
 class _GroceriesListStoreState extends State<GroceriesListStore> {
   bool _showData = false;
-  List<String> products = ["water", "bread"];
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,6 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            // add your other icon here
                             Text(
                               widget.storeName,
                               style: TextStyle(
@@ -52,7 +52,7 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
               ? Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    for (var i in products)
+                    for (var i in widget.storeProducts)
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
                         child: GroceriesListProduct(productName: i),

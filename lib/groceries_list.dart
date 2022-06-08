@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'stores_list/groceries_list_store.dart';
+import 'button_add_product.dart';
 
 class GroceriesList extends StatefulWidget {
   @override
@@ -7,8 +8,30 @@ class GroceriesList extends StatefulWidget {
 }
 
 class _GroceriesListState extends State<GroceriesList> {
-  List<String> storesList = ["Lidl", "Colruyt", "Carrefour"];
-  List<String> items = ["item 1", "item 2", "item 3", "item 4"];
+  List storesAndItems = [
+    {
+      "storeName": "Lidl",
+      "storeProducts": ["cola", "chips"]
+    },
+    {
+      "storeName": "Colruyt",
+      "storeProducts": ["koffie", "pizza"]
+    },
+  ];
+
+  void addProduct(String product, String storeName) {
+    setState(() {
+      for (var i in storesAndItems) {
+        if (i["storeName"] == storeName) {
+          i["storeProducts"].add(product);
+        }
+      }
+    });
+  }
+
+  String getFirstStore() {
+    return storesAndItems[0]["storeName"];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +39,15 @@ class _GroceriesListState extends State<GroceriesList> {
       color: const Color(0xFCFFF3C8),
       child: ListView(
         children: <Widget>[
-          for (var i in storesList) GroceriesListStore(storeName: i),
+          AddProductButton(
+            title: "title of button",
+            addProduct: addProduct,
+            storesAndItems: storesAndItems,
+            getFirstStore: getFirstStore,
+          ),
+          for (var i in storesAndItems)
+            GroceriesListStore(
+                storeName: i["storeName"], storeProducts: i["storeProducts"]),
         ],
       ),
     );

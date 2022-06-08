@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:to_buy/button_delete_product.dart';
+
+/**
+ * This widget is responsible for rendering the list of products within a specific
+ *  store
+ * */
 
 class GroceriesListProduct extends StatefulWidget {
   final String productName;
+  final String storeName;
+  final Function deleteProduct;
 
-  const GroceriesListProduct ({ required this.productName });
+  const GroceriesListProduct ({ required this.productName, required this.storeName, required this.deleteProduct });
 
   @override
   State<GroceriesListProduct> createState() => _GroceriesListProductState();
@@ -45,6 +53,7 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
           fontSize: 20,
         ),
       ),
+      DeleteProductButton(productName: widget.productName, storeName: widget.storeName, deleteProduct: widget.deleteProduct),
     ]);
   }
 }

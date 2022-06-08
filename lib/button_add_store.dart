@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dropdownmenu_stores.dart';
 
 class AddStoreButton extends StatefulWidget {
   final Function addStore;
+  final Function getListOfStores;
 
-  const AddStoreButton({required this.addStore});
+  const AddStoreButton({required this.addStore, required this.getListOfStores});
 
   @override
   State<AddStoreButton> createState() => _AddStoreButtonState();
@@ -39,7 +39,7 @@ class _AddStoreButtonState extends State<AddStoreButton> {
                 ),
                 TextButton(
                   onPressed: () {
-                    if (_valueText != "") {
+                    if (_valueText != "" && !widget.getListOfStores().contains(_valueText) ) {
                       widget.addStore(_valueText);
                     }
                     Navigator.pop(context, 'Add');

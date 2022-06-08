@@ -36,6 +36,22 @@ class _GroceriesListState extends State<GroceriesList> {
     });
   }
 
+  void deleteStore(String storeName) {
+    setState(() {
+      storesAndItems.removeWhere((i) => i["storeName"] == storeName);
+    });
+  }
+
+  void deleteProduct(String productName, String storeName) {
+    setState(() {
+      for (var i in storesAndItems) {
+        if (i["storeName"] == storeName) {
+          i["storeProducts"].remove(productName);
+        }
+      }
+    });
+  }
+
   String getFirstStore() {
     return storesAndItems[0]["storeName"];
   }
@@ -56,7 +72,7 @@ class _GroceriesListState extends State<GroceriesList> {
       color: const Color(0xFCFFF3C8),
       child: ListView(
         children: <Widget>[
-          AddStoreButton(addStore: addStore),
+          AddStoreButton(addStore: addStore, getListOfStores: getListOfStores),
           AddProductButton(
             title: "title of button",
             addProduct: addProduct,
@@ -66,7 +82,7 @@ class _GroceriesListState extends State<GroceriesList> {
           ),
           for (var i in storesAndItems)
             GroceriesListStore(
-                storeName: i["storeName"], storeProducts: i["storeProducts"]),
+                storeName: i["storeName"], storeProducts: i["storeProducts"], deleteProduct: deleteProduct, deleteStore: deleteStore,),
         ],
       ),
     );

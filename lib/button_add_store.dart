@@ -51,7 +51,7 @@ class _AddStoreButtonState extends State<AddStoreButton> {
           ],
         ),
       ),
-      child: const Text('Add store +'),
+      child: const Text('Add Store +'),
     );
   }
 }

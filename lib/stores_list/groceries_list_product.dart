@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:to_buy/button_delete_product.dart';
-
+import 'package:audioplayers/audioplayers.dart';
 /**
  * This widget is responsible for rendering the list of products within a specific
  *  store
@@ -18,6 +18,7 @@ class GroceriesListProduct extends StatefulWidget {
 }
 
 class _GroceriesListProductState extends State<GroceriesListProduct> {
+  final AudioCache audioPlayer = AudioCache();
   bool isChecked = false;
   Color itemColor = Colors.black;
   TextDecoration itemDecoration = TextDecoration.none;
@@ -34,11 +35,14 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
 
   @override
   Widget build(BuildContext context) {
+    audioPlayer.load('audio/notification_sound.mp3');
+
     return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
       Checkbox(
         value: isChecked,
         onChanged: (bool? newValue) {
           setState(() {
+            audioPlayer.play('audio/notification_sound.mp3');
             changeText();
             isChecked = newValue!;
           });

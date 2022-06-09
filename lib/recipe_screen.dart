@@ -7,53 +7,30 @@ class Recipe extends StatefulWidget {
 }
 
 class _RecipeState extends State<Recipe> {
-  VideoPlayerController _controller = VideoPlayerController.asset(
-      'assets/videos/cupcake.mp4')
-    ..initialize();
+  VideoPlayerController videoController = VideoPlayerController.asset("assets/video/cupcake.mp4");
 
-  @override
   void initState() {
+    videoController.setLooping(true);
+    videoController.initialize();
     super.initState();
-    _controller = VideoPlayerController.asset(
-        'assets/videos/cupcake.mp4')
-      ..initialize().then((_) {
-        // Ensure the first frame is shown after the video is initialized, even before the play button has been pressed.
-        setState(() {});
-      });
   }
 
-  @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Video Demo',
-      home: Scaffold(
-        body: Center(
-          child: _controller.value.isInitialized
-              ? AspectRatio(
-            aspectRatio: _controller.value.aspectRatio,
-            child: VideoPlayer(_controller),
-          )
-              : Container(),
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            setState(() {
-              _controller.value.isPlaying
-                  ? _controller.pause()
-                  : _controller.play();
-            });
-          },
-          child: Icon(
-            _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+    return ListView(
+        children: <Widget>[
+          AspectRatio(
+              aspectRatio: 640 / 360,  // breedte gedeeld door hoogte
+              child: VideoPlayer(videoController)
           ),
-        ),
-      ),
+          ElevatedButton(
+            onPressed: () {
+              setState(() {
+                videoController.value.isPlaying ? videoController.pause() : videoController.play();
+              });
+            },
+            child: videoController.value.isPlaying ? Icon(Icons.pause, size: 60) : Icon(Icons.play_arrow, size: 60),
+          ),
+        ]
     );
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _controller.dispose();
   }
 }

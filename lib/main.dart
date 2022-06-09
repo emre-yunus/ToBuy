@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'groceries_archive.dart';
 import 'groceries_list.dart';
 import 'recipe_screen.dart';
-import 'videotest.dart';
 
 void main() {
   runApp(AppRoot());
@@ -48,7 +47,7 @@ class AppRoot extends StatelessWidget {
                   ]),
             ),
             body: TabBarView(
-                children: <Widget>[GroceriesList(), GroceriesArchive(), AppTree()]),
+                children: <Widget>[GroceriesList(), GroceriesArchive(), Recipe()]),
           ),
         ),
       );

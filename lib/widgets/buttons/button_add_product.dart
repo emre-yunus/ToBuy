@@ -25,7 +25,8 @@ class _AddProductButtonState extends State<AddProductButton> {
 
   @override
   void initState() {
-    chosenStore = widget.getFirstStore();
+    // it cannot get the first store if the storesAndItems list is empty
+    if (widget.storesAndItems.isNotEmpty) chosenStore = widget.getFirstStore();
   }
 
   void changeChosenStore(String newStore) {

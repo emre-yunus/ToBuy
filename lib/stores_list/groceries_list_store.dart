@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../button_delete_store.dart';
+import '../widgets/buttons/button_delete_store.dart';
 import 'groceries_list_product.dart';
 
 /**
@@ -9,15 +9,20 @@ import 'groceries_list_product.dart';
 
 class GroceriesListStore extends StatefulWidget {
   final String storeName;
-  final List<String> storeProducts;
+  final List storeProducts;
   final Function deleteProduct;
   final Function deleteStore;
+  final Function getProductIsChecked;
+  final Function productChangeCheckBox;
 
-  const GroceriesListStore(
-      {required this.storeName,
-      required this.storeProducts,
-      required this.deleteProduct,
-      required this.deleteStore});
+  const GroceriesListStore({
+    required this.storeName,
+    required this.storeProducts,
+    required this.deleteProduct,
+    required this.deleteStore,
+    required this.getProductIsChecked,
+    required this.productChangeCheckBox,
+      });
 
   @override
   State<GroceriesListStore> createState() => _GroceriesListStoreState();
@@ -66,9 +71,11 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
                         child: GroceriesListProduct(
-                          productName: i,
+                          productName: i["productName"],
                           storeName: widget.storeName,
                           deleteProduct: widget.deleteProduct,
+                          getProductIsChecked: widget.getProductIsChecked,
+                          productChangeCheckBox: widget.productChangeCheckBox,
                         ),
                       )
                   ],

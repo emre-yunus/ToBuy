@@ -23,7 +23,8 @@ class _DropDownMenuStoresState extends State<DropDownMenuStores> {
 
   @override
   void initState() {
-    currentValue = widget.getFirstStore();
+    // it cannot get the first store if the storesAndItems list is empty
+    if (widget.storesAndItems.isNotEmpty) currentValue = widget.getFirstStore();
   }
 
   @override

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'button_add_store.dart';
-import 'stores_list/groceries_list_store.dart';
-import 'button_add_product.dart';
+import 'buttons/button_add_store.dart';
+import 'buttons/button_add_product.dart';
+import '../stores_list/groceries_list_store.dart';
+
 
 class GroceriesList extends StatefulWidget {
   final List storesAndItems;
@@ -13,6 +14,8 @@ class GroceriesList extends StatefulWidget {
   final Function deleteProduct;
   final Function getFirstStore;
   final Function getListOfStores;
+  final Function getProductIsChecked;
+  final Function productChangeCheckBox;
 
   const GroceriesList({
     required this.storesAndItems,
@@ -24,6 +27,8 @@ class GroceriesList extends StatefulWidget {
     required this.deleteProduct,
     required this.getFirstStore,
     required this.getListOfStores,
+    required this.getProductIsChecked,
+    required this.productChangeCheckBox,
   });
 
   @override
@@ -50,9 +55,11 @@ class _GroceriesListState extends State<GroceriesList> {
           for (var i in widget.storesAndItems)
             GroceriesListStore(
               storeName: i["storeName"],
-              storeProducts: i["storeProducts"],
+              storeProducts: i["storeProducts"] ?? [],
               deleteProduct: widget.deleteProduct,
               deleteStore: widget.deleteStore,
+              getProductIsChecked: widget.getProductIsChecked,
+              productChangeCheckBox: widget.productChangeCheckBox,
             ),
         ],
       ),

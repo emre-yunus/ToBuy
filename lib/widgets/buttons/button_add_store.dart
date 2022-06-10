@@ -39,10 +39,8 @@ class _AddStoreButtonState extends State<AddStoreButton> {
                 ),
                 TextButton(
                   onPressed: () {
-                    if (_valueText != "" && !widget.getListOfStores().contains(_valueText) ) {
                       widget.addStore(_valueText);
-                    }
-                    Navigator.pop(context, 'Add');
+                      Navigator.pop(context, 'Add');
                   },
                   child: const Text('Add'),
                 ),

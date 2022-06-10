@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:to_buy/button_add_archive_product.dart';
+import 'package:to_buy/widgets/buttons/button_add_archive_product.dart';
 
 class ArchiveListProduct extends StatefulWidget {
   final String productName;

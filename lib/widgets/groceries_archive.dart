@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
-import 'archive_list/archive_list_product.dart';
+import '../archive_list/archive_list_product.dart';
 
 class GroceriesArchive extends StatefulWidget {
   final List storesAndItems;

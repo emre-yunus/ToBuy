@@ -6,6 +6,10 @@ import 'groceries_archive.dart';
 import 'recipe_screen.dart';
 
 class MainScreen extends StatefulWidget {
+  final String language;
+
+  const MainScreen({required this.language});
+
   @override
   State<MainScreen> createState() => _MainScreenState();
 }
@@ -20,7 +24,7 @@ class _MainScreenState extends State<MainScreen> {
       setState(() {
         groceryList = waarde;
       });
-    } );
+    });
   }
 
   List getGroceriesListAsJSON() => json.decode(groceryList);
@@ -30,7 +34,8 @@ class _MainScreenState extends State<MainScreen> {
   List<String> getListOfStores() {
     List<String> listOfStores = [];
     for (var i in getGroceriesListAsJSON()) {
-      if (!listOfStores.contains(i["storeName"])) listOfStores.add(i["storeName"]);
+      if (!listOfStores.contains(i["storeName"]))
+        listOfStores.add(i["storeName"]);
     }
     return listOfStores;
   }
@@ -72,8 +77,10 @@ class _MainScreenState extends State<MainScreen> {
     //this adds the product
     for (var i in grocerListsJSON) {
       if (i["storeName"] == storeName) {
-        if (productName.isNotEmpty && !i["storeProducts"].contains(productName)) {
-            i["storeProducts"].add({"productName": productName, "checked": false});
+        if (productName.isNotEmpty &&
+            !i["storeProducts"].contains(productName)) {
+          i["storeProducts"]
+              .add({"productName": productName, "checked": false});
         }
       }
     }
@@ -102,7 +109,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   bool getProductIsChecked(String storeName, String productName) {
-    for(var i in json.decode(groceryList)) {
+    for (var i in json.decode(groceryList)) {
       if (i["storeName"] == storeName) {
         for (var j in i["storeProducts"]) {
           if (j["productName"] == productName) return j["checked"];
@@ -138,45 +145,59 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Widget build(BuildContext buildContext) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    home: DefaultTabController(
-      length: 3,
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: const Color(0xff834655),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/logo_transparent.png',
-                fit: BoxFit.contain,
-                height: 130,
+        debugShowCheckedModeBanner: false,
+        home: DefaultTabController(
+          length: 3,
+          child: Scaffold(
+            appBar: AppBar(
+              backgroundColor: const Color(0xff834655),
+              title: Row(
+                //mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.fromLTRB(0.0, 12.0, 0.0, 0.0),
+                    height: 25.0,
+                    width: 60.0,
+                    child: ElevatedButton(
+                      child: Icon(Icons.arrow_back, size: 20.0, color: const Color(0xffc8b273)),
+                      onPressed: () => Navigator.pop(context),
+                      style: ElevatedButton.styleFrom(
+                        primary: const Color(0xff6e3945),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                      child: Center(
+                    child: Image.asset(
+                      'assets/logo_transparent.png',
+                      fit: BoxFit.contain,
+                      height: 130,
+                    ),
+                  )),
+                ],
               ),
-            ],
-          ),
-          bottom: TabBar(
-              labelColor: const Color(0xffc8b273),
-              indicatorColor: const Color(0xffc8b273),
-              tabs: [
-                Tab(
-                    child: Text(
+              bottom: TabBar(
+                  labelColor: const Color(0xffc8b273),
+                  indicatorColor: const Color(0xffc8b273),
+                  tabs: [
+                    Tab(
+                        child: Text(
                       "Groceries",
                       style: TextStyle(fontSize: 20),
                     )),
-                Tab(
-                    child: Text(
+                    Tab(
+                        child: Text(
                       "Archive",
                       style: TextStyle(fontSize: 20),
                     )),
-                Tab(
-                    child: Text(
+                    Tab(
+                        child: Text(
                       "Recipe",
                       style: TextStyle(fontSize: 20),
                     ))
-              ]),
-        ),
-        body: TabBarView(
-            children: <Widget>[
+                  ]),
+            ),
+            body: TabBarView(children: <Widget>[
               GroceriesList(
                 storesAndItems: getGroceriesListAsJSON(),
                 showAddProductButton: showAddProductButton(),
@@ -198,9 +219,9 @@ class _MainScreenState extends State<MainScreen> {
               ),
               Recipe()
             ]),
-      ),
-    ),
-  );
+          ),
+        ),
+      );
 
   Future<void> save(String naam, String waarde) async {
     final prefs = await SharedPreferences.getInstance();

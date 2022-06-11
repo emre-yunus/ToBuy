@@ -50,7 +50,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const MainScreen(language: "English")));
+                                MainScreen(translationIndex: 0,)));
                   },
                 ),
               ),
@@ -67,7 +67,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) =>
-                                const MainScreen(language: "Nederlands")));
+                                MainScreen(translationIndex: 1,)));
                   },
                 ),
               ),

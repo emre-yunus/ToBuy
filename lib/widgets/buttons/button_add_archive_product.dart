@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dropdownmenu_stores.dart';
+import '../inheritance/translator.dart';
 
 class AddArchiveProductButton extends StatefulWidget {
   final String productName;
@@ -23,6 +24,12 @@ class AddArchiveProductButton extends StatefulWidget {
 class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
   String chosenStore = "";
 
+  //translations
+  List<String> addProductTranslation = ["Add Product", "Product Toevoegen"];
+  List<String> pickStoreTranslation = ["Pick a store:", "Kies een winkel:"];
+  List<String> cancelTranslation = ["Cancel", "Annuleer"];
+  List<String> addTranslation = ["Add", "Toevoegen"];
+
   @override
   void initState() {
     if (widget.storesAndItems.isNotEmpty) chosenStore = widget.getFirstStore();
@@ -35,19 +42,19 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext primaryContext) {
     return ElevatedButton(
       onPressed: () => showDialog<String>(
-        context: context,
+        context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Add Product'),
+          title: Text(addProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
           content: null,
           actions: <Widget>[
             Row(
               children: [
-                const Padding(
-                  padding: EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
-                  child: Text("Pick a store:"),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
+                  child: Text(pickStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
                 DropDownMenuStores(
                   chosenStore: chosenStore,
@@ -61,22 +68,22 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'Cancel'),
-                  child: const Text('Cancel'),
+                  onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
                 TextButton(
                   onPressed: () {
                     widget.addProduct(widget.productName, chosenStore);
-                    Navigator.pop(context, 'Add');
+                    Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
                   },
-                  child: const Text('Add'),
+                  child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
               ],
             ),
           ],
         ),
       ),
-      child: const Text('Add Product +'),
+      child: Text("+"),
     );
   }
 }

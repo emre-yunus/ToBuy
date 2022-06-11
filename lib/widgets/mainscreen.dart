@@ -4,11 +4,12 @@ import 'dart:convert';
 import 'groceries_list.dart';
 import 'groceries_archive.dart';
 import 'recipe_screen.dart';
+import 'inheritance/translator.dart';
 
 class MainScreen extends StatefulWidget {
-  final String language;
+  final int translationIndex;
 
-  const MainScreen({required this.language});
+  const MainScreen({ required this.translationIndex });
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -17,6 +18,11 @@ class MainScreen extends StatefulWidget {
 class _MainScreenState extends State<MainScreen> {
   String groceryList = "[]";
   String storeName = "";
+
+  //translations
+  List<String> groceriesTranslation = ["Groceries", "Boodschappen"];
+  List<String> archiveTranslation = ["Archive", "Archief"];
+  List<String> recipeTranslation = ["Recipe", "Recept"];
 
   @override
   void initState() {
@@ -144,7 +150,9 @@ class _MainScreenState extends State<MainScreen> {
     return true;
   }
 
-  Widget build(BuildContext buildContext) => MaterialApp(
+  Widget build(BuildContext buildContext) => TranslatorInheritedWidget(
+      widget.translationIndex,
+      MaterialApp(
         debugShowCheckedModeBanner: false,
         home: DefaultTabController(
           length: 3,
@@ -168,33 +176,33 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   Expanded(
                       child: Center(
-                    child: Image.asset(
-                      'assets/logo_transparent.png',
-                      fit: BoxFit.contain,
-                      height: 130,
-                    ),
-                  )),
+                        child: Image.asset(
+                          'assets/logo_transparent.png',
+                          fit: BoxFit.contain,
+                          height: 130,
+                        ),
+                      )),
                 ],
               ),
               bottom: TabBar(
-                  labelColor: const Color(0xffc8b273),
-                  indicatorColor: const Color(0xffc8b273),
+                  labelColor: Color(0xffc8b273),
+                  indicatorColor: Color(0xffc8b273),
                   tabs: [
                     Tab(
                         child: Text(
-                      "Groceries",
-                      style: TextStyle(fontSize: 20),
-                    )),
+                          groceriesTranslation[widget.translationIndex],
+                          style: const TextStyle(fontSize: 20),
+                        )),
                     Tab(
                         child: Text(
-                      "Archive",
-                      style: TextStyle(fontSize: 20),
-                    )),
+                          archiveTranslation[widget.translationIndex],
+                          style: const TextStyle(fontSize: 20),
+                        )),
                     Tab(
                         child: Text(
-                      "Recipe",
-                      style: TextStyle(fontSize: 20),
-                    ))
+                          recipeTranslation[widget.translationIndex],
+                          style: const TextStyle(fontSize: 20),
+                        ))
                   ]),
             ),
             body: TabBarView(children: <Widget>[
@@ -221,7 +229,8 @@ class _MainScreenState extends State<MainScreen> {
             ]),
           ),
         ),
-      );
+      ),
+  );
 
   Future<void> save(String naam, String waarde) async {
     final prefs = await SharedPreferences.getInstance();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../inheritance/translator.dart';
 
 class DeleteProductButton extends StatefulWidget {
   final String productName;
@@ -12,35 +13,43 @@ class DeleteProductButton extends StatefulWidget {
 }
 
 class _DeleteProductButtonState extends State<DeleteProductButton> {
+  //translations
+  List<String> deleteProductTranslation = ["Delete product", "Verwijder product"];
+  List<String> areYouSureTranslation = ["Are you sure you want to delete ", "Bevestig dat u het volgende wil verwijderen: "];
+  List<String> cancelTranslation = ["Cancel", "Annuleer"];
+  List<String> confirmTranslation = ["Confirm", "Bevestigen"];
+  List<String> removeTranslation = ["remove -", "verwijder -"];
+
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext primaryContext) {
     return ElevatedButton(
       onPressed: () => showDialog<String>(
-        context: context,
+        context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Delete product'),
-          content: Text("Are you sure you want to delete ${widget.productName}"),
+          title: Text(deleteProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+          content: Text(areYouSureTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex] + widget.productName),
           actions: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'Cancel'),
-                  child: const Text('Cancel'),
+                  onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
                 TextButton(
                   onPressed: () {
                     widget.deleteProduct(widget.productName, widget.storeName);
-                    Navigator.pop(context, 'Confirm');
+                    Navigator.pop(context, confirmTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
                   },
-                  child: const Text('Confirm'),
+                  child: Text(confirmTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
               ],
             ),
           ],
         ),
       ),
-      child: const Text('remove -'),
+      child: Text(removeTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
     );
   }
 }

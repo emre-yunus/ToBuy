@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../inheritance/translator.dart';
 
 class AddStoreButton extends StatefulWidget {
   final Function addStore;
@@ -13,13 +14,20 @@ class AddStoreButton extends StatefulWidget {
 class _AddStoreButtonState extends State<AddStoreButton> {
   String _valueText = "";
 
+  //translations
+  List<String> addStoreTranslation = ["Add Store", "Winkel Toevoegen"];
+  List<String> nameOfStoreTranslation = ["Name Of Store", "Winkelnaam"];
+  List<String> cancelTranslation = ["Cancel", "Annuleer"];
+  List<String> addTranslation = ["Add", "Toevoegen"];
+  List<String> addStorePlusTranslation = ["Add Store +", "Winkel Toevoegen +"];
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext primaryContext) {
     return ElevatedButton(
       onPressed: () => showDialog<String>(
-        context: context,
+        context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Add Store'),
+          title: Text(addStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
           content: TextField(
             onChanged: (value) {
               setState(() {
@@ -27,29 +35,29 @@ class _AddStoreButtonState extends State<AddStoreButton> {
               });
             },
             //controller: _textFieldController,
-            decoration: InputDecoration(hintText: "Name of store"),
+            decoration: InputDecoration(hintText: nameOfStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
           ),
           actions: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context, 'Cancel'),
-                  child: const Text('Cancel'),
+                  onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
                 TextButton(
                   onPressed: () {
                       widget.addStore(_valueText);
-                      Navigator.pop(context, 'Add');
+                      Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
                   },
-                  child: const Text('Add'),
+                  child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
                 ),
               ],
             ),
           ],
         ),
       ),
-      child: const Text('Add Store +'),
+      child: Text(addStorePlusTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
     );
   }
 }

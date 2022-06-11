@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
 import '../archive_list/archive_list_product.dart';
+import 'inheritance/translator.dart';
 
 class GroceriesArchive extends StatefulWidget {
   final List storesAndItems;
@@ -23,6 +24,10 @@ class GroceriesArchive extends StatefulWidget {
 class _GroceriesArchiveState extends State<GroceriesArchive> {
   List<List<dynamic>> _data = [];
   List<String> _productsList = [];
+
+  //translations
+  List<String> seeMoreProductsTranslation = ["See more products", "Bekijk meer producten"];
+  List<String> removeProductsTranslation = ["Remove all products", "Verwijder alle producten"];
 
   @override
   void initState() {
@@ -80,11 +85,11 @@ class _GroceriesArchiveState extends State<GroceriesArchive> {
                   storesAndItems: widget.storesAndItems,
               ),
             ElevatedButton(
-              child: Text("add 15 more products"),
+              child: Text(seeMoreProductsTranslation[TranslatorInheritedWidget.of(context).translationIndex]),
               onPressed: _fillProductsList,
             ),
             ElevatedButton(
-              child: Text("remove all products"),
+              child: Text(removeProductsTranslation[TranslatorInheritedWidget.of(context).translationIndex]),
               onPressed: _resetProductList,
             ),
           ],

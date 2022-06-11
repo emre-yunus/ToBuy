@@ -25,7 +25,7 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
 
   @override
   void initState() {
-    chosenStore = widget.getFirstStore();
+    if (widget.storesAndItems.isNotEmpty) chosenStore = widget.getFirstStore();
   }
 
   void changeChosenStore(String newStore) {

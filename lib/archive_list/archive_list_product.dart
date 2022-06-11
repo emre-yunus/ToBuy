@@ -8,13 +8,12 @@ class ArchiveListProduct extends StatefulWidget {
   final Function getFirstStore;
   final Function getListOfStores;
 
-  const ArchiveListProduct ({
-    required this.productName,
-    required this.storesAndItems,
-    required this.addProduct,
-    required this.getFirstStore,
-    required this.getListOfStores
-  });
+  const ArchiveListProduct(
+      {required this.productName,
+      required this.storesAndItems,
+      required this.addProduct,
+      required this.getFirstStore,
+      required this.getListOfStores});
 
   @override
   State<ArchiveListProduct> createState() => _ArchiveListProductState();
@@ -22,6 +21,19 @@ class ArchiveListProduct extends StatefulWidget {
 
 class _ArchiveListProductState extends State<ArchiveListProduct> {
   TextDecoration itemDecoration = TextDecoration.none;
+  late bool _showAddProductButton;
+
+  @override
+  void initState() {
+    setState(() {
+      if (widget.storesAndItems.isNotEmpty) {
+        _showAddProductButton = true;
+      } else {
+        _showAddProductButton = false;
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,13 +49,15 @@ class _ArchiveListProductState extends State<ArchiveListProduct> {
           ),
         ),
       ),
-      AddArchiveProductButton(
-          productName: widget.productName,
-          storesAndItems: widget.storesAndItems,
-          addProduct: widget.addProduct,
-          getFirstStore: widget.getFirstStore,
-          getListOfStores: widget.getListOfStores,
-      )
+      _showAddProductButton
+          ? AddArchiveProductButton(
+              productName: widget.productName,
+              storesAndItems: widget.storesAndItems,
+              addProduct: widget.addProduct,
+              getFirstStore: widget.getFirstStore,
+              getListOfStores: widget.getListOfStores,
+            )
+          : SizedBox(),
     ]);
   }
 }

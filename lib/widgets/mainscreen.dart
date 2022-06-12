@@ -83,8 +83,8 @@ class _MainScreenState extends State<MainScreen> {
     //this adds the product
     for (var i in grocerListsJSON) {
       if (i["storeName"] == storeName) {
-        if (productName.isNotEmpty &&
-            !i["storeProducts"].contains(productName)) {
+        if (productName.isNotEmpty) {
+          i["storeProducts"].removeWhere((j) => j["productName"] == productName);
           i["storeProducts"]
               .add({"productName": productName, "checked": false});
         }

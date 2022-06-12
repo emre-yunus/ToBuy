@@ -33,6 +33,11 @@ class _AddProductButtonState extends State<AddProductButton> {
   List<String> cancelTranslation = ["Cancel", "Annuleer"];
   List<String> addTranslation = ["Add", "Toevoegen"];
 
+  TextStyle ts = const TextStyle(
+    color: Color(0xff6e3945),
+    fontSize: 20,
+  );
+
   @override
   void initState() {
     // it cannot get the first store if the storesAndItems list is empty
@@ -54,8 +59,15 @@ class _AddProductButtonState extends State<AddProductButton> {
       onPressed: () => showDialog<String>(
         context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: Text(addProductTranslation[
-              TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+          backgroundColor: const Color(0xFCFFF3C8),
+          title: Text(
+            addProductTranslation[
+                TranslatorInheritedWidget.of(primaryContext).translationIndex],
+            style: const TextStyle(
+              color: Color(0xff6e3945),
+              fontSize: 25,
+            ),
+          ),
           content: TextField(
             onChanged: (value) {
               setState(() {
@@ -69,52 +81,68 @@ class _AddProductButtonState extends State<AddProductButton> {
                         .translationIndex]),
           ),
           actions: <Widget>[
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
-                  child: Text(pickStoreTranslation[
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      pickStoreTranslation[
                       TranslatorInheritedWidget.of(primaryContext)
-                          .translationIndex]),
+                          .translationIndex],
+                      style: ts,
+                    ),
+                    DropDownMenuStores(
+                      chosenStore: chosenStore,
+                      changeChosenStore: changeChosenStore,
+                      storesAndItems: widget.storesAndItems,
+                      getFirstStore: widget.getFirstStore,
+                      getListOfStores: widget.getListOfStores,
+                    ),
+                  ],
                 ),
-                DropDownMenuStores(
-                  chosenStore: chosenStore,
-                  changeChosenStore: changeChosenStore,
-                  storesAndItems: widget.storesAndItems,
-                  getFirstStore: widget.getFirstStore,
-                  getListOfStores: widget.getListOfStores,
-                ),
-              ],
+              ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.pop(
-                      context,
+            Padding(
+              padding: const EdgeInsets.only(top: 20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(
+                        context,
+                        cancelTranslation[
+                            TranslatorInheritedWidget.of(primaryContext)
+                                .translationIndex]),
+                    child: Text(
                       cancelTranslation[
                           TranslatorInheritedWidget.of(primaryContext)
-                              .translationIndex]),
-                  child: Text(cancelTranslation[
-                      TranslatorInheritedWidget.of(primaryContext)
-                          .translationIndex]),
-                ),
-                TextButton(
-                  onPressed: () {
-                    if (_valueText != "") {
-                      widget.addProduct(_valueText, chosenStore);
-                    }
-                    Navigator.pop(
-                        context,
-                        addTranslation[
-                            TranslatorInheritedWidget.of(primaryContext)
-                                .translationIndex]);
-                  },
-                  child: Text(addTranslation[
-                      TranslatorInheritedWidget.of(primaryContext)
-                          .translationIndex]),
-                ),
-              ],
+                              .translationIndex],
+                      style: ts,
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      if (_valueText != "") {
+                        widget.addProduct(_valueText, chosenStore);
+                      }
+                      Navigator.pop(
+                          context,
+                          addTranslation[
+                              TranslatorInheritedWidget.of(primaryContext)
+                                  .translationIndex]);
+                    },
+                    child: Text(
+                      addTranslation[
+                          TranslatorInheritedWidget.of(primaryContext)
+                              .translationIndex],
+                      style: ts,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ],
         ),

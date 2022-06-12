@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../inheritance/translator.dart';
 
@@ -21,6 +23,11 @@ class _AddStoreButtonState extends State<AddStoreButton> {
   List<String> addTranslation = ["Add", "Toevoegen"];
   List<String> addStorePlusTranslation = ["Store +", "Winkel +"];
 
+  TextStyle ts = const TextStyle(
+    color: Color(0xff6e3945),
+    fontSize: 20,
+  );
+
   @override
   Widget build(BuildContext primaryContext) {
     return ElevatedButton(
@@ -30,8 +37,14 @@ class _AddStoreButtonState extends State<AddStoreButton> {
       onPressed: () => showDialog<String>(
         context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: Text(addStoreTranslation[
-              TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+          backgroundColor: const Color(0xFCFFF3C8),
+          title: Text(
+            addStoreTranslation[
+                TranslatorInheritedWidget.of(primaryContext).translationIndex],
+            style: const TextStyle(
+              color: Color(0xff6e3945),
+            ),
+          ),
           content: TextField(
             onChanged: (value) {
               setState(() {
@@ -46,7 +59,7 @@ class _AddStoreButtonState extends State<AddStoreButton> {
           ),
           actions: <Widget>[
             Row(
-              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 TextButton(
                   onPressed: () => Navigator.pop(
@@ -54,9 +67,12 @@ class _AddStoreButtonState extends State<AddStoreButton> {
                       cancelTranslation[
                           TranslatorInheritedWidget.of(primaryContext)
                               .translationIndex]),
-                  child: Text(cancelTranslation[
-                      TranslatorInheritedWidget.of(primaryContext)
-                          .translationIndex]),
+                  child: Text(
+                    cancelTranslation[
+                        TranslatorInheritedWidget.of(primaryContext)
+                            .translationIndex],
+                    style: ts,
+                  ),
                 ),
                 TextButton(
                   onPressed: () {
@@ -67,9 +83,11 @@ class _AddStoreButtonState extends State<AddStoreButton> {
                             TranslatorInheritedWidget.of(primaryContext)
                                 .translationIndex]);
                   },
-                  child: Text(addTranslation[
-                      TranslatorInheritedWidget.of(primaryContext)
-                          .translationIndex]),
+                  child: Text(
+                    addTranslation[TranslatorInheritedWidget.of(primaryContext)
+                        .translationIndex],
+                    style: ts,
+                  ),
                 ),
               ],
             ),
@@ -79,10 +97,7 @@ class _AddStoreButtonState extends State<AddStoreButton> {
       child: Text(
         addStorePlusTranslation[
             TranslatorInheritedWidget.of(primaryContext).translationIndex],
-        style: const TextStyle(
-          color: Color(0xFCFFF3C8),
-          fontSize: 20
-        ),
+        style: const TextStyle(color: Color(0xFCFFF3C8), fontSize: 20),
       ),
     );
   }

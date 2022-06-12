@@ -30,14 +30,14 @@ class _DropDownMenuStoresState extends State<DropDownMenuStores> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
-      //value: widget.chosenStore,
+      dropdownColor: const Color(0xFCFFF3C8),
       value: currentValue,
-      icon: const Icon(Icons.arrow_downward),
+      icon: const Icon(Icons.arrow_downward, color: Color(0xff6e3945),),
       elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
+      style: const TextStyle(color: Color(0xff6e3945), fontSize: 20),
       underline: Container(
         height: 2,
-        color: Colors.deepPurpleAccent,
+        color: const Color(0xff6e3945),
       ),
       onChanged: (String? value) {
         setState(() {

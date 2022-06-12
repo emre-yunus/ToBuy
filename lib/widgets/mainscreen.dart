@@ -176,10 +176,13 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   Expanded(
                       child: Center(
-                        child: Image.asset(
-                          'assets/logo_transparent.png',
-                          fit: BoxFit.contain,
-                          height: 130,
+                        child: Container(
+                          margin: const EdgeInsets.fromLTRB(0.0, 0.0, 60.0, 0.0),
+                          child: Image.asset(
+                            'assets/logo_transparent.png',
+                            fit: BoxFit.contain,
+                            height: 130,
+                          ),
                         ),
                       )),
                 ],

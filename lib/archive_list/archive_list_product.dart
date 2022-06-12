@@ -45,7 +45,7 @@ class _ArchiveListProductState extends State<ArchiveListProduct> {
           style: TextStyle(
             color: Colors.black,
             decoration: itemDecoration,
-            fontSize: 20,
+            fontSize: 22,
           ),
         ),
       ),

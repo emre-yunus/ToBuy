@@ -32,10 +32,6 @@ class _AddProductButtonState extends State<AddProductButton> {
   List<String> pickStoreTranslation = ["Pick a store:", "Kies een winkel:"];
   List<String> cancelTranslation = ["Cancel", "Annuleer"];
   List<String> addTranslation = ["Add", "Toevoegen"];
-  List<String> addProductPlusTranslation = [
-    "Add Product +",
-    "Product Toevoegen +"
-  ];
 
   @override
   void initState() {
@@ -123,12 +119,9 @@ class _AddProductButtonState extends State<AddProductButton> {
           ],
         ),
       ),
-      child: Text(
-        addProductPlusTranslation[
-            TranslatorInheritedWidget.of(primaryContext).translationIndex],
-        style: const TextStyle(
-          color: Color(0xFCFFF3C8),
-        ),
+      child: const Text(
+        "Product +",
+        style: TextStyle(color: Color(0xFCFFF3C8), fontSize: 20),
       ),
     );
   }

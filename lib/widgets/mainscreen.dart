@@ -185,8 +185,8 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
               bottom: TabBar(
-                  labelColor: Color(0xffc8b273),
-                  indicatorColor: Color(0xffc8b273),
+                  labelColor: const Color(0xffc8b273),
+                  indicatorColor: const Color(0xffc8b273),
                   tabs: [
                     Tab(
                         child: Text(

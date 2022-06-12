@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import '../widgets/buttons/button_delete_store.dart';
 import 'groceries_list_product.dart';
@@ -22,7 +24,7 @@ class GroceriesListStore extends StatefulWidget {
     required this.deleteStore,
     required this.getProductIsChecked,
     required this.productChangeCheckBox,
-      });
+  });
 
   @override
   State<GroceriesListStore> createState() => _GroceriesListStoreState();
@@ -37,7 +39,7 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10.0),
+          const SizedBox(height: 10.0),
           // list card containing country name
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,20 +48,32 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                   onTap: () {
                     setState(() => _showData = !_showData);
                   },
-                  child: Container(
-                      child: Padding(
-                          padding: EdgeInsets.all(10.0),
+                  child: Row(
+                    children: [
+                      Icon(
+                        _showData ? Icons.arrow_drop_down : Icons.arrow_right,
+                        size: 50,
+                        color: const Color(0xff6e3945),
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.all(10.0),
                           child: Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
                                   widget.storeName,
                                   style: const TextStyle(
-                                    fontSize: 22,
+                                    fontSize: 30,
+                                    fontWeight: FontWeight.w500,
                                   ),
                                 )
-                              ])))),
-              DeleteStoreButton(storeName: widget.storeName, deleteStore: widget.deleteStore,)
+                              ])),
+                    ],
+                  )),
+              DeleteStoreButton(
+                storeName: widget.storeName,
+                deleteStore: widget.deleteStore,
+              )
             ],
           ),
 
@@ -70,7 +84,7 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                   children: <Widget>[
                     for (var i in widget.storeProducts)
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(20.0, 0.0, 0.0, 0.0),
+                        padding: const EdgeInsets.fromLTRB(30.0, 0.0, 0.0, 0.0),
                         child: GroceriesListProduct(
                           productName: i["productName"],
                           storeName: widget.storeName,
@@ -81,7 +95,7 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                       )
                   ],
                 )
-              : SizedBox() // else blank
+              : const SizedBox() // else blank
         ]);
   }
 }

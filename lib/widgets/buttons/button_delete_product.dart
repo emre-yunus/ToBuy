@@ -34,7 +34,7 @@ class _DeleteProductButtonState extends State<DeleteProductButton> {
   @override
   Widget build(BuildContext primaryContext) {
     return Container(
-      margin: const EdgeInsets.fromLTRB(0.0, 0.0, 40.0, 0.0),
+      margin: const EdgeInsets.fromLTRB(0.0, 0.0, 55.0, 0.0),
       height: 30.0,
       width: 60.0,
       child: ElevatedButton(

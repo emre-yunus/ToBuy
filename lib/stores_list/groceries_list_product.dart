@@ -76,7 +76,7 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
             style: TextStyle(
               color: itemColor,
               decoration: itemDecoration,
-              fontSize: 20,
+              fontSize: 25,
             ),
           ),
         ],

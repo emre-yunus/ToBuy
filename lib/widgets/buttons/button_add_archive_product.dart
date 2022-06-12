@@ -45,50 +45,54 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
 
   @override
   Widget build(BuildContext primaryContext) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-        primary: const Color(0xff834655)
-      ),
-      onPressed: () => showDialog<String>(
-        context: primaryContext,
-        builder: (BuildContext context) => AlertDialog(
-          title: Text(addProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-          content: null,
-          actions: <Widget>[
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
-                  child: Text(pickStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                ),
-                DropDownMenuStores(
-                  chosenStore: chosenStore,
-                  changeChosenStore: changeChosenStore,
-                  storesAndItems: widget.storesAndItems,
-                  getFirstStore: widget.getFirstStore,
-                  getListOfStores: widget.getListOfStores,),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                  child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                ),
-                TextButton(
-                  onPressed: () {
-                    widget.addProduct(widget.productName, chosenStore);
-                    Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
-                  },
-                  child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                ),
-              ],
-            ),
-          ],
+    return SizedBox(
+      height: 25.0,
+      width: 60.0,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: const Color(0xff6e3945)
         ),
+        onPressed: () => showDialog<String>(
+          context: primaryContext,
+          builder: (BuildContext context) => AlertDialog(
+            title: Text(addProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+            content: null,
+            actions: <Widget>[
+              Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
+                    child: Text(pickStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  ),
+                  DropDownMenuStores(
+                    chosenStore: chosenStore,
+                    changeChosenStore: changeChosenStore,
+                    storesAndItems: widget.storesAndItems,
+                    getFirstStore: widget.getFirstStore,
+                    getListOfStores: widget.getListOfStores,),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                    child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      widget.addProduct(widget.productName, chosenStore);
+                      Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
+                    },
+                    child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        child: const Icon(Icons.add, color: Color(0xFCFFF3C8)),
       ),
-      child: const Text("+", style: TextStyle(color: Color(0xFCFFF3C8)),),
     );
   }
 }

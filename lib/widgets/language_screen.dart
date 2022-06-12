@@ -35,22 +35,33 @@ class _LanguageScreenState extends State<LanguageScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Container(
-                child: const Text("Language - Taal:"),
+                margin: const EdgeInsets.fromLTRB(0.0, 80.0, 0.0, 50.0),
+                child: const Text(
+                  "Language - Taal:",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xff5b303c),
+                    fontSize: 30,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
               Container(
                 margin: const EdgeInsets.fromLTRB(80.0, 0.0, 80.0, 50.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
                     primary: const Color(0xff834655),
                   ),
                   child: const Text("English",
-                      style: TextStyle(color: Color(0xFCFFF3C8))),
+                      style: TextStyle(color: Color(0xFCFFF3C8), fontSize: 20)),
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                MainScreen(translationIndex: 0,)));
+                            builder: (context) => const MainScreen(
+                                  translationIndex: 0,
+                                )));
                   },
                 ),
               ),
@@ -58,16 +69,18 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 margin: const EdgeInsets.fromLTRB(80.0, 0.0, 80.0, 0.0),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 10.0),
                     primary: const Color(0xff834655),
                   ),
                   child: const Text("Nederlands",
-                      style: TextStyle(color: Color(0xFCFFF3C8))),
+                      style: TextStyle(color: Color(0xFCFFF3C8), fontSize: 20)),
                   onPressed: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) =>
-                                MainScreen(translationIndex: 1,)));
+                            builder: (context) => const MainScreen(
+                                  translationIndex: 1,
+                                )));
                   },
                 ),
               ),

@@ -19,7 +19,7 @@ class _AddStoreButtonState extends State<AddStoreButton> {
   List<String> nameOfStoreTranslation = ["Name Of Store", "Winkelnaam"];
   List<String> cancelTranslation = ["Cancel", "Annuleer"];
   List<String> addTranslation = ["Add", "Toevoegen"];
-  List<String> addStorePlusTranslation = ["Add Store +", "Winkel Toevoegen +"];
+  List<String> addStorePlusTranslation = ["Store +", "Winkel +"];
 
   @override
   Widget build(BuildContext primaryContext) {
@@ -81,6 +81,7 @@ class _AddStoreButtonState extends State<AddStoreButton> {
             TranslatorInheritedWidget.of(primaryContext).translationIndex],
         style: const TextStyle(
           color: Color(0xFCFFF3C8),
+          fontSize: 20
         ),
       ),
     );

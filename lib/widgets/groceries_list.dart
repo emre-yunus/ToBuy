@@ -40,29 +40,38 @@ class _GroceriesListState extends State<GroceriesList> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.fromLTRB(0.0, 10.0, 0.0, 0.0),
       color: const Color(0xFCFFF3C8),
       child: ListView(
         children: <Widget>[
-          AddStoreButton(
-              addStore: widget.addStore,
-              getListOfStores: widget.getListOfStores),
-          widget.showAddProductButton
-              ? AddProductButton(
-                  title: "title of button",
-                  addProduct: widget.addProduct,
-                  storesAndItems: widget.storesAndItems,
-                  getFirstStore: widget.getFirstStore,
-                  getListOfStores: widget.getListOfStores,
-                )
-              : SizedBox(),
+          Row(
+            mainAxisAlignment: widget.showAddProductButton ? MainAxisAlignment.spaceEvenly : MainAxisAlignment.center,
+            children: <Widget>[
+              AddStoreButton(
+                  addStore: widget.addStore,
+                  getListOfStores: widget.getListOfStores),
+              widget.showAddProductButton
+                  ? AddProductButton(
+                title: "title of button",
+                addProduct: widget.addProduct,
+                storesAndItems: widget.storesAndItems,
+                getFirstStore: widget.getFirstStore,
+                getListOfStores: widget.getListOfStores,
+              )
+                  : const SizedBox(),
+            ],
+          ),
           for (var i in widget.storesAndItems)
-            GroceriesListStore(
-              storeName: i["storeName"],
-              storeProducts: i["storeProducts"] ?? [],
-              deleteProduct: widget.deleteProduct,
-              deleteStore: widget.deleteStore,
-              getProductIsChecked: widget.getProductIsChecked,
-              productChangeCheckBox: widget.productChangeCheckBox,
+            Container(
+              margin: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 25.0),
+              child: GroceriesListStore(
+                storeName: i["storeName"],
+                storeProducts: i["storeProducts"] ?? [],
+                deleteProduct: widget.deleteProduct,
+                deleteStore: widget.deleteStore,
+                getProductIsChecked: widget.getProductIsChecked,
+                productChangeCheckBox: widget.productChangeCheckBox,
+              ),
             ),
         ],
       ),

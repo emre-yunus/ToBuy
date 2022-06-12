@@ -44,7 +44,8 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
+              Flexible(
+                child: GestureDetector(
                   onTap: () {
                     setState(() => _showData = !_showData);
                   },
@@ -55,25 +56,28 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                         size: 50,
                         color: const Color(0xff6e3945),
                       ),
-                      Padding(
+                      Flexible(
+                        child: Container(
                           padding: const EdgeInsets.all(10.0),
-                          child: Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  widget.storeName,
-                                  style: const TextStyle(
-                                    fontSize: 30,
-                                    fontWeight: FontWeight.w500,
-                                  ),
-                                )
-                              ])),
+                          child: Text(
+                            widget.storeName,
+                            overflow: TextOverflow.fade,
+                            style: const TextStyle(
+                              fontSize: 30,
+                              fontWeight: FontWeight.w500,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      )
                     ],
-                  )),
+                  ),
+                ),
+              ),
               DeleteStoreButton(
                 storeName: widget.storeName,
                 deleteStore: widget.deleteStore,
-              )
+              ),
             ],
           ),
 

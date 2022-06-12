@@ -90,8 +90,8 @@ class _AddProductButtonState extends State<AddProductButton> {
                   children: [
                     Text(
                       pickStoreTranslation[
-                      TranslatorInheritedWidget.of(primaryContext)
-                          .translationIndex],
+                          TranslatorInheritedWidget.of(primaryContext)
+                              .translationIndex],
                       style: ts,
                     ),
                     DropDownMenuStores(

@@ -31,6 +31,11 @@ class _DeleteProductButtonState extends State<DeleteProductButton> {
   List<String> confirmTranslation = ["Confirm", "Bevestigen"];
   List<String> removeTranslation = ["remove", "verwijder"];
 
+  TextStyle ts = const TextStyle(
+    color: Color(0xff6e3945),
+    fontSize: 20,
+  );
+
   @override
   Widget build(BuildContext primaryContext) {
     return Container(
@@ -42,15 +47,16 @@ class _DeleteProductButtonState extends State<DeleteProductButton> {
         onPressed: () => showDialog<String>(
           context: primaryContext,
           builder: (BuildContext context) => AlertDialog(
+            backgroundColor: const Color(0xFCFFF3C8),
             title: Text(deleteProductTranslation[
-                TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                TranslatorInheritedWidget.of(primaryContext).translationIndex], style: ts,),
             content: Text(areYouSureTranslation[
                     TranslatorInheritedWidget.of(primaryContext)
                         .translationIndex] +
-                widget.productName),
+                widget.productName, style: ts,),
             actions: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
                     onPressed: () => Navigator.pop(
@@ -60,7 +66,7 @@ class _DeleteProductButtonState extends State<DeleteProductButton> {
                                 .translationIndex]),
                     child: Text(cancelTranslation[
                         TranslatorInheritedWidget.of(primaryContext)
-                            .translationIndex]),
+                            .translationIndex], style: ts,),
                   ),
                   TextButton(
                     onPressed: () {
@@ -73,7 +79,7 @@ class _DeleteProductButtonState extends State<DeleteProductButton> {
                     },
                     child: Text(confirmTranslation[
                         TranslatorInheritedWidget.of(primaryContext)
-                            .translationIndex]),
+                            .translationIndex], style: ts,),
                   ),
                 ],
               ),

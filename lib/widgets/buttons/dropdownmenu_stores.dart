@@ -30,6 +30,7 @@ class _DropDownMenuStoresState extends State<DropDownMenuStores> {
   @override
   Widget build(BuildContext context) {
     return DropdownButton<String>(
+      isExpanded: true,
       dropdownColor: const Color(0xFCFFF3C8),
       value: currentValue,
       icon: const Icon(Icons.arrow_downward, color: Color(0xff6e3945),),

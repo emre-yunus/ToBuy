@@ -60,31 +60,39 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
   Widget build(BuildContext context) {
     audioPlayer.load('audio/notification_sound.mp3');
 
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Checkbox(
-            value: widget.getProductIsChecked(widget.storeName, widget.productName),
-            onChanged: (bool? newValue) {
-              toggleCheckBox();
-            },
-            activeColor: Colors.grey,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Flexible(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Checkbox(
+                value: widget.getProductIsChecked(
+                    widget.storeName, widget.productName),
+                onChanged: (bool? newValue) {
+                  toggleCheckBox();
+                },
+                activeColor: Colors.grey,
+              ),
+              Flexible(
+                child: Text(
+                  widget.productName,
+                  style: TextStyle(
+                    color: itemColor,
+                    decoration: itemDecoration,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ],
           ),
-          Text(
-            widget.productName,
-            style: TextStyle(
-              color: itemColor,
-              decoration: itemDecoration,
-              fontSize: 25,
-            ),
-          ),
-        ],
-      ),
-      DeleteProductButton(
-          productName: widget.productName,
-          storeName: widget.storeName,
-          deleteProduct: widget.deleteProduct),
-    ]);
+        ),
+        DeleteProductButton(
+            productName: widget.productName,
+            storeName: widget.storeName,
+            deleteProduct: widget.deleteProduct),
+      ],
+    );
   }
 }

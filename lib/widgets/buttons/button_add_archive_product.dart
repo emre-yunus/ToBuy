@@ -12,15 +12,15 @@ class AddArchiveProductButton extends StatefulWidget {
   final Function getListOfStores;
 
   const AddArchiveProductButton(
-      {
-        required this.productName,
-        required this.storesAndItems,
-        required this.addProduct,
-        required this.getFirstStore,
-        required this.getListOfStores});
+      {required this.productName,
+      required this.storesAndItems,
+      required this.addProduct,
+      required this.getFirstStore,
+      required this.getListOfStores});
 
   @override
-  State<AddArchiveProductButton> createState() => _AddArchiveProductButtonState();
+  State<AddArchiveProductButton> createState() =>
+      _AddArchiveProductButtonState();
 }
 
 class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
@@ -31,6 +31,11 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
   List<String> pickStoreTranslation = ["Pick a store:", "Kies een winkel:"];
   List<String> cancelTranslation = ["Cancel", "Annuleer"];
   List<String> addTranslation = ["Add", "Toevoegen"];
+
+  TextStyle ts = const TextStyle(
+    color: Color(0xff6e3945),
+    fontSize: 20,
+  );
 
   @override
   void initState() {
@@ -49,44 +54,80 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
       height: 25.0,
       width: 60.0,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: const Color(0xff6e3945)
-        ),
+        style: ElevatedButton.styleFrom(primary: const Color(0xff6e3945)),
         onPressed: () => showDialog<String>(
           context: primaryContext,
           builder: (BuildContext context) => AlertDialog(
-            title: Text(addProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+            backgroundColor: const Color(0xFCFFF3C8),
+            title: Text(
+              addProductTranslation[TranslatorInheritedWidget.of(primaryContext)
+                  .translationIndex],
+              style: ts,
+            ),
             content: null,
             actions: <Widget>[
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
-                    child: Text(pickStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        pickStoreTranslation[
+                        TranslatorInheritedWidget.of(primaryContext)
+                            .translationIndex],
+                        style: ts,
+                      ),
+                      DropDownMenuStores(
+                        chosenStore: chosenStore,
+                        changeChosenStore: changeChosenStore,
+                        storesAndItems: widget.storesAndItems,
+                        getFirstStore: widget.getFirstStore,
+                        getListOfStores: widget.getListOfStores,
+                      ),
+                    ],
                   ),
-                  DropDownMenuStores(
-                    chosenStore: chosenStore,
-                    changeChosenStore: changeChosenStore,
-                    storesAndItems: widget.storesAndItems,
-                    getFirstStore: widget.getFirstStore,
-                    getListOfStores: widget.getListOfStores,),
-                ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  TextButton(
-                    onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                    child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      widget.addProduct(widget.productName, chosenStore);
-                      Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
-                    },
-                    child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(
+                          context,
+                          cancelTranslation[
+                          TranslatorInheritedWidget.of(primaryContext)
+                              .translationIndex]),
+                      child: Text(
+                        cancelTranslation[
+                        TranslatorInheritedWidget.of(primaryContext)
+                            .translationIndex],
+                        style: ts,
+                      ),
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        if (chosenStore != "") {
+                          widget.addProduct(chosenStore, chosenStore);
+                        }
+                        Navigator.pop(
+                            context,
+                            addTranslation[
+                            TranslatorInheritedWidget.of(primaryContext)
+                                .translationIndex]);
+                      },
+                      child: Text(
+                        addTranslation[
+                        TranslatorInheritedWidget.of(primaryContext)
+                            .translationIndex],
+                        style: ts,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),

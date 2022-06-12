@@ -23,6 +23,11 @@ class _DeleteStoreButtonState extends State<DeleteStoreButton> {
   List<String> cancelTranslation = ["Cancel", "Annuleer"];
   List<String> confirmTranslation = ["Confirm", "Bevestigen"];
 
+  TextStyle ts = const TextStyle(
+    color: Color(0xff6e3945),
+    fontSize: 20,
+  );
+
   @override
   Widget build(BuildContext primaryContext) {
     return Container(
@@ -36,15 +41,16 @@ class _DeleteStoreButtonState extends State<DeleteStoreButton> {
         onPressed: () => showDialog<String>(
           context: primaryContext,
           builder: (BuildContext context) => AlertDialog(
+            backgroundColor: const Color(0xFCFFF3C8),
             title: Text(deleteStoreTranslation[
-                TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                TranslatorInheritedWidget.of(primaryContext).translationIndex], style: ts,),
             content: Text(areYouSureTranslation[
                     TranslatorInheritedWidget.of(primaryContext)
                         .translationIndex] +
-                widget.storeName),
+                widget.storeName, style: ts,),
             actions: <Widget>[
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   TextButton(
                     onPressed: () => Navigator.pop(
@@ -54,7 +60,7 @@ class _DeleteStoreButtonState extends State<DeleteStoreButton> {
                                 .translationIndex]),
                     child: Text(cancelTranslation[
                         TranslatorInheritedWidget.of(primaryContext)
-                            .translationIndex]),
+                            .translationIndex], style: ts,),
                   ),
                   TextButton(
                     onPressed: () {
@@ -68,7 +74,7 @@ class _DeleteStoreButtonState extends State<DeleteStoreButton> {
                     child: Text(
                       confirmTranslation[
                           TranslatorInheritedWidget.of(primaryContext)
-                              .translationIndex],
+                              .translationIndex], style: ts,
                     ),
                   ),
                 ],

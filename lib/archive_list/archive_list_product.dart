@@ -37,27 +37,32 @@ class _ArchiveListProductState extends State<ArchiveListProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-      Padding(
-        padding: const EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
-        child: Text(
-          widget.productName,
-          style: TextStyle(
-            color: Colors.black,
-            decoration: itemDecoration,
-            fontSize: 22,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Flexible(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
+            child: Text(
+              widget.productName,
+              style: TextStyle(
+                color: Colors.black,
+                decoration: itemDecoration,
+                fontSize: 22,
+              ),
+            ),
           ),
         ),
-      ),
-      _showAddProductButton
-          ? AddArchiveProductButton(
-              productName: widget.productName,
-              storesAndItems: widget.storesAndItems,
-              addProduct: widget.addProduct,
-              getFirstStore: widget.getFirstStore,
-              getListOfStores: widget.getListOfStores,
-            )
-          : SizedBox(),
-    ]);
+        _showAddProductButton
+            ? AddArchiveProductButton(
+                productName: widget.productName,
+                storesAndItems: widget.storesAndItems,
+                addProduct: widget.addProduct,
+                getFirstStore: widget.getFirstStore,
+                getListOfStores: widget.getListOfStores,
+              )
+            : const SizedBox(),
+      ],
+    );
   }
 }

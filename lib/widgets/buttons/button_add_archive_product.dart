@@ -110,9 +110,7 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
                     ),
                     TextButton(
                       onPressed: () {
-                        if (chosenStore != "") {
-                          widget.addProduct(chosenStore, chosenStore);
-                        }
+                        widget.addProduct(widget.productName, chosenStore);
                         Navigator.pop(
                             context,
                             addTranslation[
@@ -129,6 +127,52 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
                   ],
                 ),
               ),
+
+              //Row(
+              //  children: [
+              //    Padding(
+              //      padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
+              //      child: Text(pickStoreTranslation[
+              //          TranslatorInheritedWidget.of(primaryContext)
+              //              .translationIndex]),
+              //    ),
+              //    DropDownMenuStores(
+              //      chosenStore: chosenStore,
+              //      changeChosenStore: changeChosenStore,
+              //      storesAndItems: widget.storesAndItems,
+              //      getFirstStore: widget.getFirstStore,
+              //      getListOfStores: widget.getListOfStores,
+              //    ),
+              //  ],
+              //),
+              //Row(
+              //  mainAxisAlignment: MainAxisAlignment.end,
+              //  children: [
+              //    TextButton(
+              //      onPressed: () => Navigator.pop(
+              //          context,
+              //          cancelTranslation[
+              //              TranslatorInheritedWidget.of(primaryContext)
+              //                  .translationIndex]),
+              //      child: Text(cancelTranslation[
+              //          TranslatorInheritedWidget.of(primaryContext)
+              //              .translationIndex]),
+              //    ),
+              //    TextButton(
+              //      onPressed: () {
+              //        widget.addProduct(widget.productName, chosenStore);
+              //        Navigator.pop(
+              //            context,
+              //            addTranslation[
+              //                TranslatorInheritedWidget.of(primaryContext)
+              //                    .translationIndex]);
+              //      },
+              //      child: Text(addTranslation[
+              //          TranslatorInheritedWidget.of(primaryContext)
+              //              .translationIndex]),
+              //    ),
+              //  ],
+              //),
             ],
           ),
         ),

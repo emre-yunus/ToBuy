@@ -26,15 +26,33 @@ class GroceriesListProduct extends StatefulWidget {
   State<GroceriesListProduct> createState() => _GroceriesListProductState();
 }
 
-class _GroceriesListProductState extends State<GroceriesListProduct> {
+class _GroceriesListProductState extends State<GroceriesListProduct> with SingleTickerProviderStateMixin{
   final AudioCache audioPlayer = AudioCache();
   late Color itemColor;
   late TextDecoration itemDecoration;
 
+  late Animation<double> animatie;
+  late AnimationController animatieController;
+
   @override
   void initState() {
+
+    animate();
+
     changeText();
     super.initState();
+  }
+
+  void animate() {
+    animatieController = AnimationController(
+        duration: const Duration(seconds: 1),
+        vsync: this
+    );
+    animatie = Tween<double>(begin: 25, end: 17).animate(animatieController);
+    animatie.addListener(() {
+      setState(() { });
+    });
+    animatieController.forward();
   }
 
   void changeText() {
@@ -78,10 +96,12 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
               Flexible(
                 child: Text(
                   widget.productName,
+                  //textScaleFactor: animatie.value,
                   style: TextStyle(
                     color: itemColor,
                     decoration: itemDecoration,
-                    fontSize: 25,
+                    fontSize: widget.getProductIsChecked(
+                        widget.storeName, widget.productName) ? animatie.value : 25,
                   ),
                 ),
               ),

@@ -37,7 +37,7 @@ class _ArchiveListProductState extends State<ArchiveListProduct> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
       Padding(
         padding: const EdgeInsets.fromLTRB(5.0, 5.0, 0.0, 5.0),
         child: Text(

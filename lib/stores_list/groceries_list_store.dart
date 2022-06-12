@@ -40,6 +40,7 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
           SizedBox(height: 10.0),
           // list card containing country name
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               GestureDetector(
                   onTap: () {
@@ -53,7 +54,7 @@ class _GroceriesListStoreState extends State<GroceriesListStore> {
                               children: [
                                 Text(
                                   widget.storeName,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     fontSize: 22,
                                   ),
                                 )

@@ -14,7 +14,7 @@ class GroceriesListProduct extends StatefulWidget {
   final Function deleteProduct;
   final Function productChangeCheckBox;
 
-  const GroceriesListProduct ({
+  const GroceriesListProduct({
     required this.productName,
     required this.getProductIsChecked,
     required this.storeName,
@@ -49,7 +49,8 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
 
   void toggleCheckBox() {
     audioPlayer.play('audio/notification_sound.mp3');
-    widget.productChangeCheckBox(widget.storeName, widget.productName); //this changes the checked status of the product
+    widget.productChangeCheckBox(widget.storeName,
+        widget.productName); //this changes the checked status of the product
     setState(() {
       changeText();
     });
@@ -59,23 +60,31 @@ class _GroceriesListProductState extends State<GroceriesListProduct> {
   Widget build(BuildContext context) {
     audioPlayer.load('audio/notification_sound.mp3');
 
-    return Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-      Checkbox(
-        value: widget.getProductIsChecked(widget.storeName, widget.productName),
-        onChanged: (bool? newValue) {
-          toggleCheckBox();
-        },
-        activeColor: Colors.grey,
+    return Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Checkbox(
+            value: widget.getProductIsChecked(widget.storeName, widget.productName),
+            onChanged: (bool? newValue) {
+              toggleCheckBox();
+            },
+            activeColor: Colors.grey,
+          ),
+          Text(
+            widget.productName,
+            style: TextStyle(
+              color: itemColor,
+              decoration: itemDecoration,
+              fontSize: 20,
+            ),
+          ),
+        ],
       ),
-      Text(
-        widget.productName,
-        style: TextStyle(
-          color: itemColor,
-          decoration: itemDecoration,
-          fontSize: 20,
-        ),
-      ),
-      DeleteProductButton(productName: widget.productName, storeName: widget.storeName, deleteProduct: widget.deleteProduct),
+      DeleteProductButton(
+          productName: widget.productName,
+          storeName: widget.storeName,
+          deleteProduct: widget.deleteProduct),
     ]);
   }
 }

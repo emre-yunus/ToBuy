@@ -167,7 +167,7 @@ class _MainScreenState extends State<MainScreen> {
                     height: 25.0,
                     width: 60.0,
                     child: ElevatedButton(
-                      child: Icon(Icons.arrow_back, size: 20.0, color: const Color(0xffc8b273)),
+                      child: const Icon(Icons.arrow_back, size: 20.0, color: Color(0xffc8b273)),
                       onPressed: () => Navigator.pop(context),
                       style: ElevatedButton.styleFrom(
                         primary: const Color(0xff6e3945),
@@ -191,7 +191,7 @@ class _MainScreenState extends State<MainScreen> {
                     Tab(
                         child: Text(
                           groceriesTranslation[widget.translationIndex],
-                          style: const TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: (widget.translationIndex == 1) ? 14 : 20),
                         )),
                     Tab(
                         child: Text(

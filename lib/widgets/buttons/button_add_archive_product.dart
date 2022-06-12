@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dropdownmenu_stores.dart';
 import '../inheritance/translator.dart';
@@ -44,6 +46,9 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
   @override
   Widget build(BuildContext primaryContext) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: const Color(0xff834655)
+      ),
       onPressed: () => showDialog<String>(
         context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
@@ -83,7 +88,7 @@ class _AddArchiveProductButtonState extends State<AddArchiveProductButton> {
           ],
         ),
       ),
-      child: Text("+"),
+      child: const Text("+", style: TextStyle(color: Color(0xFCFFF3C8)),),
     );
   }
 }

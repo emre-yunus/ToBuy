@@ -24,10 +24,14 @@ class _AddStoreButtonState extends State<AddStoreButton> {
   @override
   Widget build(BuildContext primaryContext) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: const Color(0xff6e3945),
+      ),
       onPressed: () => showDialog<String>(
         context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: Text(addStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+          title: Text(addStoreTranslation[
+              TranslatorInheritedWidget.of(primaryContext).translationIndex]),
           content: TextField(
             onChanged: (value) {
               setState(() {
@@ -35,29 +39,50 @@ class _AddStoreButtonState extends State<AddStoreButton> {
               });
             },
             //controller: _textFieldController,
-            decoration: InputDecoration(hintText: nameOfStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+            decoration: InputDecoration(
+                hintText: nameOfStoreTranslation[
+                    TranslatorInheritedWidget.of(primaryContext)
+                        .translationIndex]),
           ),
           actions: <Widget>[
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                  child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  onPressed: () => Navigator.pop(
+                      context,
+                      cancelTranslation[
+                          TranslatorInheritedWidget.of(primaryContext)
+                              .translationIndex]),
+                  child: Text(cancelTranslation[
+                      TranslatorInheritedWidget.of(primaryContext)
+                          .translationIndex]),
                 ),
                 TextButton(
                   onPressed: () {
-                      widget.addStore(_valueText);
-                      Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
+                    widget.addStore(_valueText);
+                    Navigator.pop(
+                        context,
+                        addTranslation[
+                            TranslatorInheritedWidget.of(primaryContext)
+                                .translationIndex]);
                   },
-                  child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  child: Text(addTranslation[
+                      TranslatorInheritedWidget.of(primaryContext)
+                          .translationIndex]),
                 ),
               ],
             ),
           ],
         ),
       ),
-      child: Text(addStorePlusTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+      child: Text(
+        addStorePlusTranslation[
+            TranslatorInheritedWidget.of(primaryContext).translationIndex],
+        style: const TextStyle(
+          color: Color(0xFCFFF3C8),
+        ),
+      ),
     );
   }
 }

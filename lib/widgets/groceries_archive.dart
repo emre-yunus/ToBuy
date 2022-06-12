@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:csv/csv.dart';
@@ -26,8 +28,14 @@ class _GroceriesArchiveState extends State<GroceriesArchive> {
   List<String> _productsList = [];
 
   //translations
-  List<String> seeMoreProductsTranslation = ["See more products", "Bekijk meer producten"];
-  List<String> removeProductsTranslation = ["Remove all products", "Verwijder alle producten"];
+  List<String> seeMoreProductsTranslation = [
+    "See more products",
+    "Bekijk meer producten"
+  ];
+  List<String> removeProductsTranslation = [
+    "Remove all products",
+    "Verwijder alle producten"
+  ];
 
   @override
   void initState() {
@@ -53,7 +61,9 @@ class _GroceriesArchiveState extends State<GroceriesArchive> {
   void _fillProductsList() {
     int counter = 0;
     setState(() {
-      for (var i in _data.sublist(1,)) {
+      for (var i in _data.sublist(
+        1,
+      )) {
         if (!_productsList.contains(i[2])) {
           _productsList.add(i[2].toString());
           counter++;
@@ -73,27 +83,34 @@ class _GroceriesArchiveState extends State<GroceriesArchive> {
   Widget build(BuildContext context) {
     return Container(
       color: const Color(0xFCFFF3C8),
-      child:
-        ListView(
-          children: <Widget>[
-            for (var i in _productsList)
-              ArchiveListProduct(
-                  productName: i,
-                  getListOfStores: widget.getListOfStores,
-                  getFirstStore: widget.getFirstStore,
-                  addProduct: widget.addProduct,
-                  storesAndItems: widget.storesAndItems,
-              ),
-            ElevatedButton(
-              child: Text(seeMoreProductsTranslation[TranslatorInheritedWidget.of(context).translationIndex]),
-              onPressed: _fillProductsList,
+      child: ListView(
+        children: <Widget>[
+          for (var i in _productsList)
+            ArchiveListProduct(
+              productName: i,
+              getListOfStores: widget.getListOfStores,
+              getFirstStore: widget.getFirstStore,
+              addProduct: widget.addProduct,
+              storesAndItems: widget.storesAndItems,
             ),
-            ElevatedButton(
-              child: Text(removeProductsTranslation[TranslatorInheritedWidget.of(context).translationIndex]),
-              onPressed: _resetProductList,
-            ),
-          ],
-        ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(primary: const Color(0xff6e3945)),
+            child: Text(
+                seeMoreProductsTranslation[
+                    TranslatorInheritedWidget.of(context).translationIndex],
+                style: const TextStyle(color: Color(0xFCFFF3C8))),
+            onPressed: _fillProductsList,
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(primary: const Color(0xff6e3945)),
+            child: Text(
+                removeProductsTranslation[
+                    TranslatorInheritedWidget.of(context).translationIndex],
+                style: const TextStyle(color: Color(0xFCFFF3C8))),
+            onPressed: _resetProductList,
+          ),
+        ],
+      ),
     );
   }
 }

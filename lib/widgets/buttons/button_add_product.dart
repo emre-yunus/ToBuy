@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'dropdownmenu_stores.dart';
 import '../inheritance/translator.dart';
@@ -30,7 +32,10 @@ class _AddProductButtonState extends State<AddProductButton> {
   List<String> pickStoreTranslation = ["Pick a store:", "Kies een winkel:"];
   List<String> cancelTranslation = ["Cancel", "Annuleer"];
   List<String> addTranslation = ["Add", "Toevoegen"];
-  List<String> addProductPlusTranslation = ["Add Product +", "Product Toevoegen +"];
+  List<String> addProductPlusTranslation = [
+    "Add Product +",
+    "Product Toevoegen +"
+  ];
 
   @override
   void initState() {
@@ -47,10 +52,14 @@ class _AddProductButtonState extends State<AddProductButton> {
   @override
   Widget build(BuildContext primaryContext) {
     return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        primary: const Color(0xff6e3945),
+      ),
       onPressed: () => showDialog<String>(
         context: primaryContext,
         builder: (BuildContext context) => AlertDialog(
-          title: Text(addProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+          title: Text(addProductTranslation[
+              TranslatorInheritedWidget.of(primaryContext).translationIndex]),
           content: TextField(
             onChanged: (value) {
               setState(() {
@@ -58,45 +67,69 @@ class _AddProductButtonState extends State<AddProductButton> {
               });
             },
             //controller: _textFieldController,
-            decoration: InputDecoration(hintText: nameOfProductTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+            decoration: InputDecoration(
+                hintText: nameOfProductTranslation[
+                    TranslatorInheritedWidget.of(primaryContext)
+                        .translationIndex]),
           ),
           actions: <Widget>[
             Row(
               children: [
                 Padding(
                   padding: const EdgeInsets.fromLTRB(15.0, 0.0, 15.0, 0.0),
-                  child: Text(pickStoreTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  child: Text(pickStoreTranslation[
+                      TranslatorInheritedWidget.of(primaryContext)
+                          .translationIndex]),
                 ),
                 DropDownMenuStores(
-                    chosenStore: chosenStore,
-                    changeChosenStore: changeChosenStore,
-                    storesAndItems: widget.storesAndItems,
-                    getFirstStore: widget.getFirstStore,
-                    getListOfStores: widget.getListOfStores,),
+                  chosenStore: chosenStore,
+                  changeChosenStore: changeChosenStore,
+                  storesAndItems: widget.storesAndItems,
+                  getFirstStore: widget.getFirstStore,
+                  getListOfStores: widget.getListOfStores,
+                ),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(
-                  onPressed: () => Navigator.pop(context, cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
-                  child: Text(cancelTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  onPressed: () => Navigator.pop(
+                      context,
+                      cancelTranslation[
+                          TranslatorInheritedWidget.of(primaryContext)
+                              .translationIndex]),
+                  child: Text(cancelTranslation[
+                      TranslatorInheritedWidget.of(primaryContext)
+                          .translationIndex]),
                 ),
                 TextButton(
                   onPressed: () {
                     if (_valueText != "") {
                       widget.addProduct(_valueText, chosenStore);
                     }
-                    Navigator.pop(context, addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]);
+                    Navigator.pop(
+                        context,
+                        addTranslation[
+                            TranslatorInheritedWidget.of(primaryContext)
+                                .translationIndex]);
                   },
-                  child: Text(addTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+                  child: Text(addTranslation[
+                      TranslatorInheritedWidget.of(primaryContext)
+                          .translationIndex]),
                 ),
               ],
             ),
           ],
         ),
       ),
-      child: Text(addProductPlusTranslation[TranslatorInheritedWidget.of(primaryContext).translationIndex]),
+      child: Text(
+        addProductPlusTranslation[
+            TranslatorInheritedWidget.of(primaryContext).translationIndex],
+        style: const TextStyle(
+          color: Color(0xFCFFF3C8),
+        ),
+      ),
     );
   }
 }
